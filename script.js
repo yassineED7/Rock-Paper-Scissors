@@ -16,3 +16,13 @@ function getComputerChoice (){
 }
 // Test the function using 
 console.log(getComputerChoice())
+
+// Write the logic to get the human choice
+function getHumanChoice (){
+    // User input 
+    const humanChoice = prompt("Rock, Paper, Scissors! What is your move?");
+    // Return value 
+    return humanChoice;
+}
+//Test the function using 
+console.log(getHumanChoice())
