@@ -28,8 +28,6 @@ function getHumanChoice() {
 //console.log(getHumanChoice())
 
 // Declare the players score variables
-let  humanScore = 0;
-let computerScore = 0;
 let humanScore = 0;
 let computerScore = 0;
 
@@ -38,29 +36,37 @@ function playRound(humanChoice, computerChoice) {
     // Make humanChoice Case-insensitivity
     humanChoice = humanChoice.toLowerCase()
 
+    // Check if human wins
     if ((humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")) {
-            if (humanChoice === "rock"){ return ["User WIN: Rock beats Scissors!", ++humanScore, computerScore]}
-            else if (humanChoice === "paper"){ return ["User WIN: Paper beats Rock!", ++humanScore, computerScore]}
-            else{return ["User WIN: Scissors beats Paper!", ++humanScore, computerScore]}
-    }else if ((humanChoice === "rock" && computerChoice === "paper") ||
-             (humanChoice === "paper" && computerChoice === "scissors") ||
-             (humanChoice === "scissors" && computerChoice === "rock")){
-                if (humanChoice === "rock"){ return ["Computer WIN: Rock loses to Paper!", humanScore, ++computerScore]}
-                else if (humanChoice === "paper"){ return ["Computer WIN: Paper loses to Scissors!", humanScore, ++computerScore]}
-                else{return ["Computer WIN: Scissors loses to Rock!", humanScore, ++computerScore]}
-    }else{
+        // Check specific human choice to return the exact message
+        if (humanChoice === "rock") { return ["User WIN: Rock beats Scissors!", ++humanScore, computerScore] }
+        else if (humanChoice === "paper") { return ["User WIN: Paper beats Rock!", ++humanScore, computerScore] }
+        else { return ["User WIN: Scissors beats Paper!", ++humanScore, computerScore] }
+        // Check if computer wins
+    } else if ((humanChoice === "rock" && computerChoice === "paper") ||
+        (humanChoice === "paper" && computerChoice === "scissors") ||
+        (humanChoice === "scissors" && computerChoice === "rock")) {
+        // Check specific human choice to show how it lost
+        if (humanChoice === "rock") { return ["Computer WIN: Rock loses to Paper!", humanScore, ++computerScore] }
+        else if (humanChoice === "paper") { return ["Computer WIN: Paper loses to Scissors!", humanScore, ++computerScore] }
+        else { return ["Computer WIN: Scissors loses to Rock!", humanScore, ++computerScore] }
+        // If no one wins then it is a draw
+    } else {
         return ["It's a Draw !!!", humanScore, computerScore]
     }
 
 }
 
+// Get choices from the functions
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
+// Print the choices in console
 console.log(`User choice: ${humanSelection}`);
 console.log(`Computer choice: ${computerSelection}`);
 
+// Play the round and print the result and scores
 const result = playRound(humanSelection, computerSelection);
 console.log(`R: ${result[0]} | humanScore: ${result[1]} computerScore: ${result[2]}`);
